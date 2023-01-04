@@ -1,0 +1,191 @@
+model {
+	for(i in 1:59) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta[i,11] * CM[i,j] * PSM[i,j] 
+								+ beta[i,12] * TC[i,j] * PSM[i,j] 
+								+ beta[i,13] * EPR[i,j] * PSM[i,j] 
+								+ beta[i,14] * CE[i,j] * PSM[i,j] 
+								+ beta[i,15] * FR[i,j] * PSM[i,j] 
+								+ beta[i,16] * PE[i,j] * PSM[i,j] 
+								+ beta[i,17] * PR[i,j] * PSM[i,j] 
+								+ beta[i,18] * Other[i,j] * PSM[i,j] 
+			prec.resp[i,j] <- (1/se[i,j])*(1/se[i,j])
+			}
+		for(m in 1:18) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 60:68) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta[i,11] * CM[i,j] * PSM[i,j] 
+								+ beta[i,12] * TC[i,j] * PSM[i,j] 
+								+ beta[i,13] * EPR[i,j] * PSM[i,j] 
+								+ beta[i,14] * CE[i,j] * PSM[i,j] 
+								+ beta[i,15] * FR[i,j] * PSM[i,j] 
+								+ beta[i,16] * PE[i,j] * PSM[i,j] 
+								+ beta[i,17] * PR[i,j] * PSM[i,j] 
+								+ beta[i,18] * Other[i,j] * PSM[i,j] 
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			ICC[i,j] <- exp(logit_ICC[i,j]) / ( 1 + exp(logit_ICC[i,j]))
+			logit_ICC[i,j] ~ dnorm(-4.16224, (1/(1.8812*1.8812)))
+			}
+		for(m in 1:18) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+	for(i in 69:100) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta[i,11] * CM[i,j] * PSM[i,j] 
+								+ beta[i,12] * TC[i,j] * PSM[i,j] 
+								+ beta[i,13] * EPR[i,j] * PSM[i,j] 
+								+ beta[i,14] * CE[i,j] * PSM[i,j] 
+								+ beta[i,15] * FR[i,j] * PSM[i,j] 
+								+ beta[i,16] * PE[i,j] * PSM[i,j] 
+								+ beta[i,17] * PR[i,j] * PSM[i,j] 
+								+ beta[i,18] * Other[i,j] * PSM[i,j]
+			prec.resp[i,j] <- (1/se[i,j])*(1/se[i,j])
+			se[i,j] ~ dunif(0,2)
+			}
+		for(m in 1:18) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 101:101) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta[i,11] * CM[i,j] * PSM[i,j] 
+								+ beta[i,12] * TC[i,j] * PSM[i,j] 
+								+ beta[i,13] * EPR[i,j] * PSM[i,j] 
+								+ beta[i,14] * CE[i,j] * PSM[i,j] 
+								+ beta[i,15] * FR[i,j] * PSM[i,j] 
+								+ beta[i,16] * PE[i,j] * PSM[i,j] 
+								+ beta[i,17] * PR[i,j] * PSM[i,j] 
+								+ beta[i,18] * Other[i,j] * PSM[i,j]
+			se[i,j] ~ dunif(0, 2)
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			}
+		for(m in 1:18) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 102:114) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta[i,11] * CM[i,j] * PSM[i,j] 
+								+ beta[i,12] * TC[i,j] * PSM[i,j] 
+								+ beta[i,13] * EPR[i,j] * PSM[i,j] 
+								+ beta[i,14] * CE[i,j] * PSM[i,j] 
+								+ beta[i,15] * FR[i,j] * PSM[i,j] 
+								+ beta[i,16] * PE[i,j] * PSM[i,j] 
+								+ beta[i,17] * PR[i,j] * PSM[i,j] 
+								+ beta[i,18] * Other[i,j] * PSM[i,j]
+			se[i,j] ~ dunif(0,2)
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			ICC[i,j] <- exp(logit_ICC[i,j]) / ( 1 + exp(logit_ICC[i,j]))
+			logit_ICC[i,j] ~ dnorm(-4.16224, (1/(1.8812*1.8812)))
+			}
+		for(m in 1:18) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+		mu_bar[1] ~ dnorm(8,0.01) 
+		for(m in 2:10) {	mu_bar[m] ~ dnorm(0,0.25) }
+		for(m in 11:18) {	mu_bar[m] ~ dnorm(0,0.50) }
+		for(m in 1:18) {	
+				prec[m] = (1/tau[m]) * (1/tau[m])
+				}
+		tau[1] ~ dunif(0,2)
+		for(m in 2:18) {	tau[m] ~ dunif(0,2) }
+
+for(m in 1:18) {
+	mu_bar_new[m] ~ dnorm(mu_bar[m] , prec[m])
+}
+
+
+#predictive distribution
+for(i in 1:114) {
+		for(j in 1:n_arms[i]) {
+		y_new [i,j] ~ dnorm(mu_new[i,j] , prec.resp[i,j])
+		mu_new[i,j] <- mu_bar_new[1] + mu_bar_new[2] * CM[i,j]
+								+ mu_bar_new[3] * TC[i,j]
+								+ mu_bar_new[4] * EPR[i,j]
+								+ mu_bar_new[5] * CE[i,j]
+								+ mu_bar_new[6] * FR[i,j]
+								+ mu_bar_new[7] * PE[i,j]
+								+ mu_bar_new[8] * PSM[i,j]
+								+ mu_bar_new[9] * PR[i,j]
+								+ mu_bar_new[10] * Other[i,j]
+								+ mu_bar_new[11] * CM[i,j] * PSM[i,j] 
+								+ mu_bar_new[12] * TC[i,j] * PSM[i,j] 
+								+ mu_bar_new[13] * EPR[i,j] * PSM[i,j] 
+								+ mu_bar_new[14] * CE[i,j] * PSM[i,j] 
+								+ mu_bar_new[15] * FR[i,j] * PSM[i,j] 
+								+ mu_bar_new[16] * PE[i,j] * PSM[i,j] 
+								+ mu_bar_new[17] * PR[i,j] * PSM[i,j] 
+								+ mu_bar_new[18] * Other[i,j] * PSM[i,j]
+								}
+}
+
+#probability model predictions exceed observed value
+for(i in 1:114) {
+		for(j in 1:n_arms[i]){
+p.crossval[i,j]<-step(y_new [i,j]-y[i,j])
+}}
+
+}

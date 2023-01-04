@@ -1,0 +1,406 @@
+model {
+	for(i in 1:59) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta [i,11] * Baseline_un [i]
+								+ beta[i,12] * CM[i,j] * Baseline_un [i]
+								+ beta[i,13] * TC[i,j] * Baseline_un [i]
+								+ beta[i,14] * EPR[i,j] * Baseline_un [i]
+								+ beta[i,15] * CE[i,j] * Baseline_un [i]
+								+ beta[i,16] * FR[i,j] * Baseline_un [i]
+								+ beta[i,17] * PE[i,j] * Baseline_un [i]
+								+ beta[i,18] * PSM[i,j] * Baseline_un [i]
+								+ beta[i,19] * PR[i,j] * Baseline_un [i]
+								+ beta[i,20] * Other[i,j] * Baseline_un [i]
+
+			prec.resp[i,j] <- (1/se[i,j])*(1/se[i,j])
+			}
+		for(m in 1:20) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 60:68) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta [i,11] * Baseline_un [i]
+								+ beta[i,12] * CM[i,j] * Baseline_un [i]
+								+ beta[i,13] * TC[i,j] * Baseline_un [i]
+								+ beta[i,14] * EPR[i,j] * Baseline_un [i]
+								+ beta[i,15] * CE[i,j] * Baseline_un [i]
+								+ beta[i,16] * FR[i,j] * Baseline_un [i]
+								+ beta[i,17] * PE[i,j] * Baseline_un [i]
+								+ beta[i,18] * PSM[i,j] * Baseline_un [i]
+								+ beta[i,19] * PR[i,j] * Baseline_un [i]
+								+ beta[i,20] * Other[i,j] * Baseline_un [i]
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			ICC[i,j] <- exp(logit_ICC[i,j]) / ( 1 + exp(logit_ICC[i,j]))
+			logit_ICC[i,j] ~ dnorm(-4.16224, (1/(1.8812*1.8812)))
+			}
+		for(m in 1:20) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+	for(i in 69:100) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta [i,11] * Baseline_un [i]
+								+ beta[i,12] * CM[i,j] * Baseline_un [i]
+								+ beta[i,13] * TC[i,j] * Baseline_un [i]
+								+ beta[i,14] * EPR[i,j] * Baseline_un [i]
+								+ beta[i,15] * CE[i,j] * Baseline_un [i]
+								+ beta[i,16] * FR[i,j] * Baseline_un [i]
+								+ beta[i,17] * PE[i,j] * Baseline_un [i]
+								+ beta[i,18] * PSM[i,j] * Baseline_un [i]
+								+ beta[i,19] * PR[i,j] * Baseline_un [i]
+								+ beta[i,20] * Other[i,j] * Baseline_un [i]
+			prec.resp[i,j] <- (1/se[i,j])*(1/se[i,j])
+			se[i,j] ~ dunif(0,2)
+			}
+		for(m in 1:20) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 101:101) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta [i,11] * Baseline_un [i]
+								+ beta[i,12] * CM[i,j] * Baseline_un [i]
+								+ beta[i,13] * TC[i,j] * Baseline_un [i]
+								+ beta[i,14] * EPR[i,j] * Baseline_un [i]
+								+ beta[i,15] * CE[i,j] * Baseline_un [i]
+								+ beta[i,16] * FR[i,j] * Baseline_un [i]
+								+ beta[i,17] * PE[i,j] * Baseline_un [i]
+								+ beta[i,18] * PSM[i,j] * Baseline_un [i]
+								+ beta[i,19] * PR[i,j] * Baseline_un [i]
+								+ beta[i,20] * Other[i,j] * Baseline_un [i]
+			se[i,j] ~ dunif(0, 2)
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			}
+		for(m in 1:20) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+for(i in 102:114) {
+		for(j in 1:n_arms[i]) {
+			y[i,j] ~ dnorm(mu[i,j] , prec.resp[i,j])
+			mu[i,j] = beta[i,1] + beta[i,2] * CM[i,j]
+								+ beta[i,3] * TC[i,j]
+								+ beta[i,4] * EPR[i,j]
+								+ beta[i,5] * CE[i,j]
+								+ beta[i,6] * FR[i,j]
+								+ beta[i,7] * PE[i,j]
+								+ beta[i,8] * PSM[i,j]
+								+ beta[i,9] * PR[i,j]
+								+ beta[i,10] * Other[i,j]
+								+ beta [i,11] * Baseline_un [i]
+								+ beta[i,12] * CM[i,j] * Baseline_un [i]
+								+ beta[i,13] * TC[i,j] * Baseline_un [i]
+								+ beta[i,14] * EPR[i,j] * Baseline_un [i]
+								+ beta[i,15] * CE[i,j] * Baseline_un [i]
+								+ beta[i,16] * FR[i,j] * Baseline_un [i]
+								+ beta[i,17] * PE[i,j] * Baseline_un [i]
+								+ beta[i,18] * PSM[i,j] * Baseline_un [i]
+								+ beta[i,19] * PR[i,j] * Baseline_un [i]
+								+ beta[i,20] * Other[i,j] * Baseline_un [i]
+			se[i,j] ~ dunif(0,2)
+			prec.resp[i,j] <- (1/(se[i,j]*sqrt(corrf[i,j])))*(1/(se[i,j]*sqrt(corrf[i,j])))
+			corrf[i,j] <- 1 + (avg_cluster_size[i,j]-1) * ICC[i,j]
+			ICC[i,j] <- exp(logit_ICC[i,j]) / ( 1 + exp(logit_ICC[i,j]))
+			logit_ICC[i,j] ~ dnorm(-4.16224, (1/(1.8812*1.8812)))
+			}
+		for(m in 1:20) {	
+		beta[i,m] ~ dnorm(mu_bar[m], prec[m])
+		}
+	}
+
+		mu_bar[1] ~ dnorm(8,0.01) 
+		for(m in 2:20) {	mu_bar[m] ~ dnorm(0,0.25) }
+		for(m in 1:20) {	
+				prec[m] = (1/tau[m]) * (1/tau[m])
+				}
+		tau[1] ~ dunif(0,2)
+		for(m in 2:20) {	tau[m] ~ dunif(0,2) }
+
+
+for(m in 1:20) {
+	mu_bar_new[m] ~ dnorm(mu_bar[m] , prec[m])
+}
+
+
+
+#predictive distribution
+for(i in 1:114) {
+		for(j in 1:n_arms[i]) {
+		y_new [i,j] ~ dnorm(mu_new[i,j] , prec.resp[i,j])
+		mu_new[i,j] <- mu_bar_new[1] + mu_bar_new[2] * CM[i,j]
+								+ mu_bar_new[3] * TC[i,j]
+								+ mu_bar_new[4] * EPR[i,j]
+								+ mu_bar_new[5] * CE[i,j]
+								+ mu_bar_new[6] * FR[i,j]
+								+ mu_bar_new[7] * PE[i,j]
+								+ mu_bar_new[8] * PSM[i,j]
+								+ mu_bar_new[9] * PR[i,j]
+								+ mu_bar_new[10] * Other[i,j]
+								+ mu_bar_new [11] * Baseline_un [i]
+								+ mu_bar_new[12] * CM[i,j] * Baseline_un [i]
+								+ mu_bar_new[13] * TC[i,j] * Baseline_un [i]
+								+ mu_bar_new[14] * EPR[i,j] * Baseline_un [i]
+								+ mu_bar_new[15] * CE[i,j] * Baseline_un [i]
+								+ mu_bar_new[16] * FR[i,j] * Baseline_un [i]
+								+ mu_bar_new[17] * PE[i,j] * Baseline_un [i]
+								+ mu_bar_new[18] * PSM[i,j] * Baseline_un [i]
+								+ mu_bar_new[19] * PR[i,j] * Baseline_un [i]
+								+ mu_bar_new[20] * Other[i,j] * Baseline_un [i]
+}
+}
+
+#probability model predictions exceed observed value
+for(i in 1:114) {
+		for(j in 1:n_arms[i]){
+p.crossval[i,j]<-step(y_new [i,j]-y[i,j])
+}}
+
+#CM
+#uncontrolled+CM
+z2_CM_U_Int<-mu_bar[1]+mu_bar[2]+mu_bar[11]+mu_bar[12]
+
+#uncontrolled+NOCM
+z2_CM_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z2_CM_Dif_U<-mu_bar[2]+mu_bar[12]
+
+#controlled+CM
+z2_CM_C_Int<-mu_bar[1]+mu_bar[2]
+
+#controlled+NOCM
+z2_CM_C<-mu_bar[1]
+
+#differenceincontrolled
+z2_CM_Dif_C<-mu_bar[2]
+
+#differenceofdifference
+z2_Diff_of_diff_CM<-z2_CM_Dif_C-z2_CM_Dif_U
+
+#TC
+#uncontrolled+TC
+z3_TC_U_Int<-mu_bar[1]+mu_bar[3]+mu_bar[11]+mu_bar[13]
+
+#uncontrolled+NOTC
+z3_TC_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z3_TC_Dif_U<-mu_bar[3]+mu_bar[13]
+
+#controlled+TC
+z3_TC_C_Int<-mu_bar[1]+mu_bar[3]
+
+#controlled+NOTC
+z3_TC_C<-mu_bar[1]
+
+#differenceincontrolled
+z3_TC_Dif_C<-mu_bar[3]
+
+#differenceofdifference
+z3_Diff_of_diff_TC<-z3_TC_Dif_C-z3_TC_Dif_U
+
+#EPR
+#uncontrolled+EPR
+z4_EPR_U_Int<-mu_bar[1]+mu_bar[4]+mu_bar[11]+mu_bar[14]
+
+#uncontrolled+NOEPR
+z4_EPR_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z4_EPR_Dif_U<-mu_bar[4]+mu_bar[14]
+
+#controlled+EPR
+z4_EPR_C_Int<-mu_bar[1]+mu_bar[4]
+
+#controlled+NOEPR
+z4_EPR_C<-mu_bar[1]
+
+#differenceincontrolled
+z4_EPR_Dif_C<-mu_bar[4]
+
+#differenceofdifference
+z4_Diff_of_diff_EPR<-z4_EPR_Dif_C- z4_EPR_Dif_U
+
+#CE
+#uncontrolled+CE
+z5_CE_U_Int<-mu_bar[1]+mu_bar[5]+mu_bar[11]+mu_bar[15]
+
+#uncontrolled+NOCE
+z5_CE_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z5_CE_Dif_U<-mu_bar[5]+mu_bar[15]
+
+#controlled+CE
+z5_CE_C_Int<-mu_bar[1]+mu_bar[5]
+
+#controlled+NOCE
+z5_CE_C<-mu_bar[1]
+
+#differenceincontrolled
+z5_CE_Dif_C<-mu_bar[5]
+
+#differenceofdifference
+z5_Diff_of_diff_CE<-z5_CE_Dif_C-z5_CE_Dif_U
+
+#FR
+#uncontrolled+FR
+z6_FR_U_Int<-mu_bar[1]+mu_bar[6]+mu_bar[11]+mu_bar[16]
+
+#uncontrolled+NOFR
+z6_FR_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z6_FR_Dif_U<-mu_bar[6]+mu_bar[16]
+
+#controlled+FR
+z6_FR_C_Int<-mu_bar[1]+mu_bar[6]
+
+#controlled+NOFR
+z6_FR_C<-mu_bar[1]
+
+#differenceincontrolled
+z6_FR_Dif_C<-mu_bar[6]
+
+#differenceofdifference
+z6_Diff_of_diff_FR<-z6_FR_Dif_C-z6_FR_Dif_U
+
+#PE
+#uncontrolled+PE
+z7_PE_U_Int<-mu_bar[1]+mu_bar[7]+mu_bar[11]+mu_bar[17]
+
+#uncontrolled+NOPE
+z7_PEU_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z7_PE_Dif_U<-mu_bar[7]+mu_bar[17]
+
+#controlled+PE
+z7_PE_C_Int<-mu_bar[1]+mu_bar[7]
+
+#controlled+NOPE
+z7_PE_C<-mu_bar[1]
+
+#differenceincontrolled
+z7_PE_Dif_C<-mu_bar[7]
+
+#differenceofdifference
+z7_Diff_of_diff_PE<-z7_PE_Dif_C-z7_PE_Dif_U
+
+#PSM
+#uncontrolled+PSM
+z8_PSM_U_Int<-mu_bar[1]+mu_bar[8]+mu_bar[11]+mu_bar[18]
+
+#uncontrolled+NOPSM
+z8_PSM_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z8_PSM_Dif_U<-mu_bar[8]+mu_bar[18]
+
+#controlled+PSM
+z8_PSM_C_Int<-mu_bar[1]+mu_bar[8]
+
+#controlled+NOPSM
+z8_PSM_C<-mu_bar[1]
+
+#differenceincontrolled
+z8_PSM_Dif_C<-mu_bar[8]
+
+#differenceofdifference
+z8_Diff_of_diff_PSM<-z8_PSM_Dif_C-z8_PSM_Dif_U
+
+#PR
+#uncontrolled+PR
+z9_PR_U_Int<-mu_bar[1]+mu_bar[9]+mu_bar[11]+mu_bar[19]
+
+#uncontrolled+NOPR
+z9_PR_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z9_PR_Dif_U<-mu_bar[9]+mu_bar[19]
+
+#controlled+PR
+z9_PR_C_Int<-mu_bar[1]+mu_bar[9]
+
+#controlled+NOPR
+z9_PR_C<-mu_bar[1]
+
+#differenceincontrolled
+z9_PR_Dif_C<-mu_bar[9]
+
+#differenceofdifference
+z9_Diff_of_diff_PR<-z9_PR_Dif_C-z9_PR_Dif_U
+
+#Other
+#uncontrolled+Other
+z10_Other_U_Int<-mu_bar[1]+mu_bar[10]+mu_bar[11]+mu_bar[20]
+
+#uncontrolled+NOOther
+z10_Other_U_NOInt<-mu_bar[1]+mu_bar[11]
+
+#differenceinuncontrolled
+z10_Other_Dif_U<-mu_bar[10]+mu_bar[20]
+
+#controlled+Other
+z10_Other_C_Int<-mu_bar[1]+mu_bar[10]
+
+#controlled+NOOther
+z10_Other_C<-mu_bar[1]
+
+#differenceincontrolled
+z10_Other_Dif_C<-mu_bar[10]
+
+#differenceofdifference
+z10_Diff_of_diff_Other<-z10_Other_Dif_C-z10_Other_Dif_U
+
+
+
+
+}
